@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import axios from 'axios';
 
 const PostDetails = () => {
     const { postID } = useParams();
@@ -9,12 +10,8 @@ const PostDetails = () => {
     const postQuery = useQuery({
         queryKey: ['posts', postID],
         queryFn: async () => {
-            const response = await fetch(
-                `https://dummyjson.com/posts/${postID}`
-            );
-            const result = await response.json();
-            console.log(result);
-            return result;
+            const response = await axios.get(`https://dummyjson.com/posts/${postID}`)     
+            return response.data;
         },
         staleTime: 10000,
     });

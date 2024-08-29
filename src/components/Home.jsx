@@ -1,15 +1,15 @@
 import { Box, List, ListItem } from "@mui/material";
 import { useQuery } from '@tanstack/react-query';
 import PostCard from "./postCard";
+import axios from "axios";
 
 const Home = () => {
 
     const postsQuery = useQuery({
         queryKey: ['posts'],
         queryFn: async () => {
-            const response = await fetch('https://dummyjson.com/posts');
-            const result = await response.json();
-            return result;
+            const response = await axios.get('https://dummyjson.com/posts');
+            return response.data;
         },
         staleTime: 10000,
     });
