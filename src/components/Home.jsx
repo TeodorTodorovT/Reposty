@@ -2,6 +2,7 @@ import { Box, List, ListItem } from "@mui/material";
 import { useQuery } from '@tanstack/react-query';
 import PostCard from "./postCard";
 import axios from "axios";
+import NewPostField from "./NewPostField";
 
 const Home = () => {
 
@@ -15,14 +16,13 @@ const Home = () => {
     });
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center">
-            
+    <Box sx = {{display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column"}}>
+    <NewPostField />
     {postsQuery.isFetching ? (
         <div>loading...</div>
     ) : (
         <List
             sx={{
-                width: '100%',
                 maxWidth: 600,
                 bgcolor: 'background.paper',
             }}
